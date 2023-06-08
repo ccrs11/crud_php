@@ -41,6 +41,5 @@ if (isset($_POST['anadir'])){
         $message = isset($_SESSION["message"]) ? $_SESSION["message"] : "";
     // die("sorry, you must fill all the data form"); //change for a card
     }
+    session_unset();
 }
-
-?>

@@ -2,7 +2,6 @@
 require "./postear.php";
 require "./buscar.php";
 
-session_unset();
 
 
 
@@ -68,7 +67,7 @@ require "./getAll.php";
 <body>
     <form name="datos1" action="" method="POST">
         <label for="nombre">Nombre</label>
-        <input type="text" name="nombre" id="nombre">
+        <input type="text" name="nombre" id="nombre" value="">
         <br><br>
         <label for="apellido">apellido</label>
         <input type="text" name="apellido" id="apellido">
@@ -127,7 +126,9 @@ require "./getAll.php";
     </table>
     <br><br><br><br>
 
-    <?= var_dump($_DATAg1) ?>
+    <?php if (isset($_DATAg1)): ?>
+        <p><?php echo $_DATAg1; ?></p> <!-- Display the session message within a <p> element -->
+    <?php endif; ?>
 
     <br><br>
 
