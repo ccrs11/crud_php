@@ -1,52 +1,10 @@
 <?php
+require "./postear.php";
+require "./buscar.php";
 
-$_DATA1 = file_get_contents("https://6480e445f061e6ec4d4a0286.mockapi.io/crud");
-$data1_decode = json_decode($_DATA1);
+session_unset();
 
 
-if (isset($_POST['anadir'])){
-    if(isset($_POST['nombre']) and isset($_POST['apellido']) and isset($_POST['edad']) and isset($_POST['direccion']) and isset($_POST['email']) and isset($_POST['horaEntrada']) and isset($_POST['team']) and isset($_POST['trainer'])){
-    $nombre=$_POST['nombre'];
-    $apellido=$_POST['apellido'];
-    $edad=$_POST['edad'];
-    $direccion=$_POST['direccion'];
-    $email=$_POST['email'];
-    $horaEntrada=$_POST['horaEntrada'];
-    $team=$_POST['team'];
-    $trainer=$_POST['trainer'];
-    }
-    if( !empty($nombre) and !empty($apellido) and !empty($edad) and !empty($direccion) and !empty($email) and !empty($horaEntrada) and !empty($team) and !empty($trainer)){
-        $formData=[
-            "nombre"=>$nombre,
-            "apellido"=>$apellido,
-            "edad"=>$edad,
-            "direccion"=>$direccion,
-            "email"=>$email,
-            "horaEntrada"=>$horaEntrada,
-            "team"=>$team,
-            "trainer"=>$trainer,
-        ];
-        $jsonFormData=json_encode($formData);
-
-        $options = [
-            "http"=>[
-                "method" => "POST",
-                "header" => "Content-type: application/json; charset=UTF-8",
-                "content" => $jsonFormData
-            ]
-        ];
-
-        $context = stream_context_create($options);
-        $_DATA = file_get_contents("https://6480e445f061e6ec4d4a0286.mockapi.io/crud",false,$context);
-        //debe devolverlo a una tabla
-        //print_r($_DATA);
-    }else{
-        die("sorry, you must fill all the data form"); //change for a card
-    }
-}
-if (isset($_POST['buscar'])and !empty($_POST["cedula"])){
-    $_DATAg1 = file_get_contents("https://6480e445f061e6ec4d4a0286.mockapi.io/crud/{$_POST["cedula"]}");
-}
 
 if (isset($_POST['eliminar'])and !empty($_POST["cedula"])){
     $options = [
@@ -96,7 +54,7 @@ if (isset($_POST['editar']) and !empty($_POST["cedula"])){
         //print_r($_DATA);
     }
 }
-
+require "./getAll.php";
 ?>
 
 <!DOCTYPE html>
@@ -141,9 +99,41 @@ if (isset($_POST['editar']) and !empty($_POST["cedula"])){
         <button name="editar">editar</button>
         <button name="buscar">buscar</button>
     </form>
-    <?= $_DATA1 = file_get_contents("https://6480e445f061e6ec4d4a0286.mockapi.io/crud");?>
+    <table>
+        <tr>
+            <th>Nombre</th>
+            <th>Apellido</th>
+            <th>Edad</th>
+            <th>Dirección</th>
+            <th>Email</th>
+            <th>Hora de Entrada</th>
+            <th>Equipo</th>
+            <th>Entrenador</th>
+            <th>UP</th>
+        </tr>
+        <?php foreach ($data1_decode as $item): ?>
+        <tr>
+            <td><?= $item->nombre; ?></td>
+            <td><?= $item->apellido; ?></td>
+            <td><?= $item->edad; ?></td>
+            <td><?= $item->direccion; ?></td>
+            <td><?= $item->email; ?></td>
+            <td><?= $item->horaEntrada; ?></td>
+            <td><?= $item->team; ?></td>
+            <td><?= $item->trainer; ?></td>
+            <td ><button value="<?= $item->id; ?>"> /\ </button></td>
+        </tr>
+        <?php endforeach; ?>
+    </table>
     <br><br><br><br>
-    <?= $_DATAg1 ?>
+
+    <?= var_dump($_DATAg1) ?>
+
+    <br><br>
+
+    <?php if (!empty($message)): ?>
+        <p><?php echo $message; ?></p> <!-- Display the session message within a <p> element -->
+    <?php endif; ?>
     
 </body>
 </html>
