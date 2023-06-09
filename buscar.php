@@ -7,11 +7,11 @@ if (isset($_POST['buscar'])){
     $datag1_decode = json_decode($_DATAg1);
     
         if(isset($_DATAg1) and empty($_DATAg1)){
-            $_SESSION["message"] = "El id ingresado no se encuentra";
+            $_SESSION["message"] = "1bEl id ingresado no se encuentra";
             $message = isset($_SESSION["message"]) ? $_SESSION["message"] : "";
         }
     }else{
-        $_SESSION["message"] = "debe ingresar un ID";
+        $_SESSION["message"] = "2bdebe ingresar un ID";
         $message = isset($_SESSION["message"]) ? $_SESSION["message"] : "";
     }
 

@@ -1,0 +1,38 @@
+html {
+    box-sizing: border-box;
+}
+
+h1 {
+    margin: 20px;
+    padding: 20px;
+}
+
+input {
+    display: block;
+    width: 80%;
+    padding: 10px;
+}
+
+.container{
+    max-width: 60%;
+    margin: 0 auto;
+    width: 90%;
+}
+
+.grid {
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+    margin-bottom: 30px;
+}
+
+.crudButtons {
+    display: grid;
+    width: 85%;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+button {
+    padding: 8px;
+}

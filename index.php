@@ -19,44 +19,63 @@ require "./getAll.php";
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
     <title>CRUD-PHP</title>
 </head>
 <body>
+
+    <?php if (!empty($message)): ?>
+        <p><?= $message ?></p> <!-- Display the session message within a <p> element -->
+    <?php endif; ?>
+
     <form name="datos1" action="" method="POST">
-        <label for="nombre">Nombre</label>
-        <input type="text" name="nombre" id="nombre" value="<?=(isset($_POST["meterArriba"])) ? $datosMeter->nombre : ((isset($_POST["buscar"])) ? $datag1_decode->nombre : "");?>">
-        <br><br>
-        <label for="apellido">apellido</label>
-        <input type="text" name="apellido" id="apellido" value="<?=(isset($_POST["meterArriba"])) ? $datosMeter->apellido : ((isset($_POST["buscar"])) ? $datag1_decode->apellido : "");?>">
-        <br><br>
-        <label for="edad">edad</label>
-        <input type="number" name="edad" id="edad" value="<?=(isset($_POST["meterArriba"])) ? $datosMeter->edad : ((isset($_POST["buscar"])) ? $datag1_decode->edad : "");?>">
-        <br><br>
-        <label for="direccion">direccion</label>
-        <input type="text" name="direccion" id="direccion" value="<?=(isset($_POST["meterArriba"])) ? $datosMeter->direccion : ((isset($_POST["buscar"])) ? $datag1_decode->direccion : "");?>">
-        <br><br>
-        <label for="email">email</label>
-        <input type="email" name="email" id="email" value="<?=(isset($_POST["meterArriba"])) ? $datosMeter->email : ((isset($_POST["buscar"])) ? $datag1_decode->email : "");?>">
-        <br><br>
-        <label for="horaEntrada">horaEntrada</label>
-        <input type="text" name="horaEntrada" id="horaEntrada" value="<?=(isset($_POST["meterArriba"])) ? $datosMeter->horaEntrada : ((isset($_POST["buscar"])) ? $datag1_decode->horaEntrada : "");?>">
-        <br><br>
-        <label for="team">team</label>
-        <input type="text" name="team" id="team" value="<?=(isset($_POST["meterArriba"])) ? $datosMeter->team : ((isset($_POST["buscar"])) ? $datag1_decode->team : "");?>">
-        <br><br>
-        <label for="trainer">trainer</label>
-        <input type="text" name="trainer" id="trainer" value="<?=(isset($_POST["meterArriba"])) ? $datosMeter->trainer : ((isset($_POST["buscar"])) ? $datag1_decode->trainer : "");?>">
-        <br><br>
-        <br><br><br><br><br>
-        <label for="cedula">cedula</label>
-        <input type="number" name="cedula" id="cedula" value="<?= $varrr ?>">
-        <button name="anadir">añadir</button>
-        <button name="eliminar">eliminar</button>
-        <button name="editar">editar</button>
-        <button name="buscar">buscar</button>
+        <section class="container">
+            <div class="grid">
+                <div class="header">
+                    <label for="nombre">Nombre</label>
+                    <input type="text" name="nombre" id="nombre" value="<?=(isset($_POST["meterArriba"])) ? $datosMeter->nombre : ((isset($_POST["buscar"])) ? $datag1_decode->nombre : "");?>">
+                    <label for="apellido">apellido</label>
+                    <input type="text" name="apellido" id="apellido" value="<?=(isset($_POST["meterArriba"])) ? $datosMeter->apellido : ((isset($_POST["buscar"])) ? $datag1_decode->apellido : "");?>">
+                    <label for="edad">edad</label>
+                    <input type="number" name="edad" id="edad" value="<?=(isset($_POST["meterArriba"])) ? $datosMeter->edad : ((isset($_POST["buscar"])) ? $datag1_decode->edad : "");?>">
+                </div>
+                <div class="header">
+                    <h1>Campuslands 👨‍🚀</h1>
+                    <label for="direccion">direccion</label>
+                    <input type="text" name="direccion" id="direccion" value="<?=(isset($_POST["meterArriba"])) ? $datosMeter->direccion : ((isset($_POST["buscar"])) ? $datag1_decode->direccion : "");?>">
+                    
+                    <label for="email">email</label>
+                    <input type="email" name="email" id="email" value="<?=(isset($_POST["meterArriba"])) ? $datosMeter->email : ((isset($_POST["buscar"])) ? $datag1_decode->email : "");?>">
+                </div>
+            </div>
+        </section>
+        <section class="container">
+            <div class="grid">
+                <div class="body">
+                        <label for="horaEntrada">horaEntrada</label>
+                        <input type="text" name="horaEntrada" id="horaEntrada" value="<?=(isset($_POST["meterArriba"])) ? $datosMeter->horaEntrada : ((isset($_POST["buscar"])) ? $datag1_decode->horaEntrada : "");?>">
+                        
+                        <label for="team">team</label>
+                        <input type="text" name="team" id="team" value="<?=(isset($_POST["meterArriba"])) ? $datosMeter->team : ((isset($_POST["buscar"])) ? $datag1_decode->team : "");?>">
+                        
+                        <label for="trainer">trainer</label>
+                        <input type="text" name="trainer" id="trainer" value="<?=(isset($_POST["meterArriba"])) ? $datosMeter->trainer : ((isset($_POST["buscar"])) ? $datag1_decode->trainer : "");?>">
+                </div>
+                <div class="body">
+                    <div class="crudButtons">
+                        <button name="anadir">✔️ añadir </button>
+                        <button name="eliminar"> ✖️ eliminar</button>
+                        <button name="editar"> 📝  editar</button>
+                        <button name="buscar"> 🔍 buscar</button>
+                        <label for="cedula">cedula</label>
+                    </div>
+                    <input type="number" name="cedula" id="cedula" value="<?= $varrr ?>">
+                </div>
+            </div>
+        </section>
     </form>
     <form action="" method="POST">
-        <table>
+        <table class="container" >
             <tr>
                 <th>Nombre</th>
                 <th>Apellido</th>
@@ -85,9 +104,7 @@ require "./getAll.php";
     </form>
     <br>
 
-    <?php if (!empty($message)): ?>
-        <p><?= $message ?></p> <!-- Display the session message within a <p> element -->
-    <?php endif; ?>
+
     
 </body>
 </html>
