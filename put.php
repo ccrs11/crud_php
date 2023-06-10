@@ -22,6 +22,10 @@ if (isset($_POST['editar'])) {
                     "team" => $team,
                     "trainer" => $trainer,
                 ];
+
+                $user_data = file_get_contents("https://6480e445f061e6ec4d4a0286.mockapi.io/crud/?cedula=" . $cedula);
+                $user_data = json_decode($user_data, true);
+
                 $jsonFormData = json_encode($formData);
                 $options = [
                     "http" => [
@@ -31,7 +35,7 @@ if (isset($_POST['editar'])) {
                     ]
                 ];
                 $context = stream_context_create($options);
-                $_DATA = file_get_contents("https://6480e445f061e6ec4d4a0286.mockapi.io/crud/{$_POST["cedula"]}", false, $context);
+                $_DATA = file_get_contents("https://6480e445f061e6ec4d4a0286.mockapi.io/crud/" . $user_data[0]["id"],false,$context);
             }
         }
         if (!isset($_DATA)and empty($_DATA)) {

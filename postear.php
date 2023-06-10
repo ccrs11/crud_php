@@ -1,7 +1,7 @@
 <?php 
 if (isset($_POST['anadir'])){
     session_start();
-    if(isset($_POST['nombre']) and isset($_POST['apellido']) and isset($_POST['edad']) and isset($_POST['direccion']) and isset($_POST['email']) and isset($_POST['horaEntrada']) and isset($_POST['team']) and isset($_POST['trainer'])){
+    if(isset($_POST['nombre']) and isset($_POST['apellido']) and isset($_POST['edad']) and isset($_POST['direccion']) and isset($_POST['email']) and isset($_POST['horaEntrada']) and isset($_POST['team']) and isset($_POST['trainer'])and isset($_POST['cedula'])){
     $nombre=$_POST['nombre'];
     $apellido=$_POST['apellido'];
     $edad=$_POST['edad'];
@@ -10,6 +10,7 @@ if (isset($_POST['anadir'])){
     $horaEntrada=$_POST['horaEntrada'];
     $team=$_POST['team'];
     $trainer=$_POST['trainer'];
+    $cedula=$_POST['cedula'];
     }
     if( !empty($nombre) and !empty($apellido) and !empty($edad) and !empty($direccion) and !empty($email) and !empty($horaEntrada) and !empty($team) and !empty($trainer)){
         $formData=[
@@ -21,6 +22,7 @@ if (isset($_POST['anadir'])){
             "horaEntrada"=>$horaEntrada,
             "team"=>$team,
             "trainer"=>$trainer,
+            "cedula"=>$cedula
         ];
         $jsonFormData=json_encode($formData);
 
@@ -37,7 +39,7 @@ if (isset($_POST['anadir'])){
         //debe devolverlo a una tabla
         //print_r($_DATA);
     }else{
-        $_SESSION["message"]= 'Debe ingresar todos los datos del formulario excepto la cedula';
+        $_SESSION["message"]= 'Debe ingresar todos los datos del formulario ';
         $message = isset($_SESSION["message"]) ? $_SESSION["message"] : "";
     // die("sorry, you must fill all the data form"); //change for a card
     }
